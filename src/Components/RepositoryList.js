@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Repository } from "./Repository";
 
-export const RepositoryList = React.memo(({ getRepositories }) => {
-  const [items, setItems] = React.useState([]);
-  const [query, setquery] = React.useState("facebook");
+export const RepositoryList = memo(({ getRepositories }) => {
+  const [items, setItems] = useState([]);
+  const [query, setquery] = useState("facebook");
 
-  React.useEffect(() => {
+  useEffect(() => {
     getRepositories(query)
       .then((res) => res.json())
       .then((data) => setItems((data && data.items) || []));
